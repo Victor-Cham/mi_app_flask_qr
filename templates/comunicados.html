@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Comunicados</h3>
+<form method="POST">
+    <textarea name="texto" rows="4" cols="50" placeholder="Escribe el comunicado aquí..."></textarea><br>
+    <button type="submit" class="btn btn-success">Generar Audio</button>
+</form>
+
+{% if mensaje %}
+    <hr>
+    <h5>Audio generado:</h5>
+    <audio controls>
+        <source src="{{ url_for('static', filename='audio/' + mensaje) }}" type="audio/mpeg">
+    </audio>
+{% endif %}
+{% endblock %}
