@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Gestión de Personas</h3>
+<form method="POST" class="mb-3">
+    <input name="nombre" placeholder="Nombre" required>
+    <input name="dni" placeholder="DNI">
+    <input name="telefono" placeholder="Teléfono">
+    <input name="correo" placeholder="Correo">
+    <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+</form>
+
+<table class="table table-bordered">
+    <tr><th>Nombre</th><th>DNI</th><th>Teléfono</th><th>Correo</th><th>Acciones</th></tr>
+    {% for p in personas %}
+    <tr>
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.dni }}</td>
+        <td>{{ p.telefono }}</td>
+        <td>{{ p.correo }}</td>
+        <td><a href="/eliminar_persona/{{ p.id }}" class="btn btn-danger btn-sm">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
