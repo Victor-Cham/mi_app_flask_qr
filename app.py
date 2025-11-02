@@ -1,3 +1,14 @@
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
+app = Flask(__name__)
+app.secret_key = "clave_secreta"  # necesaria para mensajes flash
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mi_base.db'  # base de datos única
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from gtts import gTTS
@@ -106,4 +117,32 @@ if __name__ == '__main__':
     os.makedirs('static/audio', exist_ok=True)
     os.makedirs('static/img', exist_ok=True)
     app.run(host='0.0.0.0', port=5000)
+
+
+# TABLA PERSONAS
+class Persona(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100), nullable=False)
+    dni = db.Column(db.String(20))
+    telefono = db.Column(db.String(20))
+    correo = db.Column(db.String(100))
+    comunicados = db.relationship('Comunicado', backref='solicitante', lazy=True)
+
+# TABLA COMUNICADOS
+class Comunicado(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    titulo = db.Column(db.String(200), nullable=False)
+    texto = db.Column(db.Text, nullable=False)
+    solicitante_id = db.Column(db.Integer, db.ForeignKey('persona.id'), nullable=False)
+    area = db.Column(db.String(100))
+    fecha = db.Column(db.Date, default=datetime.today)
+    repeticiones = db.Column(db.Integer, default=1)
+    archivo_audio = db.Column(db.String(200))  # nombre del archivo mp3
+
+# TABLA QR
+class CodigoQR(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100))
+    contenido = db.Column(db.Text)
+    imagen = db.Column(db.String(200))  # ruta de imagen QR
 
