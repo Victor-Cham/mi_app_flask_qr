@@ -1,0 +1,7 @@
+Flask
+SQLAlchemy
+Flask-SQLAlchemy
+gTTS
+qrcode
+Pillow
+gunicorn
