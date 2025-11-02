@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Códigos QR</h3>
+<form method="POST" enctype="multipart/form-data" class="mb-3">
+    <input name="texto" placeholder="Texto del QR" required>
+    <input type="file" name="mapa">
+    <button type="submit" class="btn btn-primary btn-sm">Generar</button>
+</form>
+
+<table class="table table-bordered">
+    <tr><th>Texto</th><th>QR</th><th>Mapa</th><th>Acciones</th></tr>
+    {% for qr in qrs %}
+    <tr>
+        <td>{{ qr.texto }}</td>
+        <td><img src="{{ url_for('static', filename='img/' + qr.imagen) }}" width="100"></td>
+        <td>
+            {% if qr.mapa %}
+            <img src="{{ url_for('static', filename='img/' + qr.mapa) }}" width="100">
+            {% endif %}
+        </td>
+        <td><a href="/eliminar_qr/{{ qr.id }}" class="btn btn-danger btn-sm">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
