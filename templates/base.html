@@ -2,33 +2,57 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title or "Aplicación QR" }}</title>
+    <title>{{ title or "Mi App Corporativa" }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Bootstrap + FontAwesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Fuente moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { background-color: #f8f9fa; }
-        nav.navbar { background-color: #0d6efd; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F4F6F8;
+        }
+        nav.navbar {
+            background-color: #0A2E5D;
+        }
         nav.navbar a.nav-link, nav.navbar-brand {
-            color: white !important;
+            color: #ffffff !important;
             font-weight: 500;
         }
         nav.navbar a.nav-link.active {
             text-decoration: underline;
         }
-        .container { margin-top: 30px; }
+        .container {
+            margin-top: 30px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
         footer {
             margin-top: 40px;
             text-align: center;
             color: #777;
             font-size: 0.9em;
         }
+        .btn-primary {
+            background-color: #0A2E5D;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #004080;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Mi App QR</a>
+            <a class="navbar-brand" href="/">Mi App Corporativa</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="/personas"><i class="fa fa-user"></i> Personas</a></li>
@@ -44,8 +68,7 @@
     </div>
 
     <footer>
-        <p>© {{ 2025 }} - PROYECTO CECOM 2025</p>
+        <p>© 2025 - Empresa Tecnológica</p>
     </footer>
 </body>
 </html>
-
